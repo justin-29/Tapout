@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trial/guest_login.dart';
+import 'package:trial/client_info.dart';
 import 'package:trial/registration_screen.dart';
 import 'package:trial/home.dart';
 import 'package:trial/sign_in.dart';

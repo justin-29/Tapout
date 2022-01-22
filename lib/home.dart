@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trial/services/auth.dart';
+import 'package:trial/client_info.dart';
 
 class HomeScreen extends StatefulWidget {
    const HomeScreen({Key? key}) : super(key: key);
@@ -18,6 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('TAP OUT'),
         actions: [
+          IconButton(onPressed: () {
+            Navigator.push(context, new MaterialPageRoute(
+                builder: (context) => const ClientInfoScreen()
+            ));
+          }, icon: const Icon(Icons.info)),
           FlatButton.icon(
             icon: const Icon(Icons.logout),
             label: const Text('logout'),

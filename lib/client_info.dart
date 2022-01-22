@@ -1,27 +1,39 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:trial/services/auth.dart';
+import 'package:trial/services/database.dart';
+import 'package:provider/provider.dart';
 
-class GuestLoginScreen extends StatefulWidget {
-  const GuestLoginScreen({Key? key}) : super(key: key);
+class ClientInfoScreen extends StatefulWidget {
+  const ClientInfoScreen({Key? key}) : super(key: key);
 
   @override
-  _GuestLoginScreenState createState() => _GuestLoginScreenState();
+  _ClientInfoScreenState createState() => _ClientInfoScreenState();
 }
 
-class _GuestLoginScreenState extends State<GuestLoginScreen> {
+class _ClientInfoScreenState extends State<ClientInfoScreen> {
   TextEditingController phone = TextEditingController();
   TextEditingController location = TextEditingController();
 
   final AuthService _auth = AuthService();
 
 
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final clients= Provider.of<QuerySnapshot>(context);
+    print(clients);
+    return StreamProvider<QuerySnapshot>.value(
+      value: DatabaseService().clients,
+      initialData: ,
+      child: Scaffold(
       appBar: AppBar(
-        title: const Text('Guest Login'),
+        title: const Text('Client Info'),
         centerTitle: true,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.menu))],
+        actions: [IconButton(onPressed: (
+
+            ) {}, icon: const Icon(Icons.menu))],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -81,6 +93,7 @@ class _GuestLoginScreenState extends State<GuestLoginScreen> {
           ],
         ),
       ),
+      )
     );
   }
 }

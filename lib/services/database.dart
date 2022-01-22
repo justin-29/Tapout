@@ -7,7 +7,7 @@ class DatabaseService {
 
   //collection reference
   final CollectionReference userdata = FirebaseFirestore.instance.collection(
-      'userdata');
+      'clients');
 
   Future updateUserData(String username, String phone, String loc,
       String Email) async {
@@ -17,5 +17,9 @@ class DatabaseService {
       'loc': loc,
       'Email': Email,
     });
-  }
+  }//get userdata
+Stream<QuerySnapshot> get clients{
+    return userdata.snapshots();
+}
+
 }

@@ -4,7 +4,7 @@ import 'package:trial/services/auth.dart';
 import 'package:trial/wrapper.dart';
 import 'package:trial/registration_screen.dart';
 import 'package:trial/sign_in.dart';
-import 'package:trial/guest_login.dart';
+import 'package:trial/client_info.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +28,7 @@ Future<void> main() async {
           //'/registration_screen':(context)=>RegistrationScreen(),
           '/congratulations':(context)=> CongratulationScreen(),
          // '/sign_in':(context)=>SignInScreen(toggleView: null,),
-           '/guest_login':(context)=>const GuestLoginScreen(),
+           '/client_info':(context)=>const ClientInfoScreen(),
         }
 
     ),

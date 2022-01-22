@@ -16,7 +16,7 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return const FirstScreen();
     } else {
-      return  HomeScreen();
+      return  const HomeScreen();
     }
   }
 }
