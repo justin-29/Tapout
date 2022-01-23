@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
           FlatButton.icon(
             icon: const Icon(Icons.logout),
             label: const Text('logout'),
+          color: Colors.white,
           onPressed:()async{
               await _auth.signOut();
           },

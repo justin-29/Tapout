@@ -116,6 +116,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ListTile(
               leading: const Icon(Icons.account_circle),
               title: TextFormField(
+                keyboardType: TextInputType.text,
                 //validator: (val)=>val!.isEmpty ? 'Enter a username':null ,
                 controller: name,
                 decoration: const InputDecoration(hintText: 'Name'),
