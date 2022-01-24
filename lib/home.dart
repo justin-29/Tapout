@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trial/location.dart';
 import 'package:trial/services/auth.dart';
 import 'package:trial/client_info.dart';
 
@@ -134,19 +135,27 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)
+                        InkWell(
+                            onTap:() {
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) => Location()
+                              ));}
+                        
+                          ,child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)
+                            ),
+                            elevation: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                        
+                                Ink.image(image: const NetworkImage('https://cdn-icons-png.flaticon.com/512/684/684908.png'), height: 100,),
+                                Text('Location')
+                              ],
+                            ),
                           ),
-                          elevation: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-
-                              Ink.image(image: const NetworkImage('https://cdn-icons-png.flaticon.com/512/684/684908.png'), height: 100,),
-                              Text('Location')
-                            ],
-                          ),
+                        
                         ),
                         Card(
                           shape: RoundedRectangleBorder(
