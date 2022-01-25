@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-void main() {
-  runApp(Location());
-}
 
 class Location extends StatefulWidget {
   // location
@@ -14,8 +11,8 @@ class Location extends StatefulWidget {
 
 class _LocationState extends State<Location> {
   var locationMessage = '';
-     String latitude;
-     String longitude;
+      String? latitude;
+      String? longitude;
 
   // function for getting the current location
   // but before that you need to add this permission!
@@ -42,19 +39,21 @@ class _LocationState extends State<Location> {
 
     if (await canLaunch(googleUrl)) {
       await launch(googleUrl);
-    } else
+    } else{
       throw ("Couldn't open google maps");
   }
-
+  }
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+     return
+     MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'User location application',
-      theme: ThemeData(
+       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Scaffold(
+       ),
+       home: 
+    Scaffold(
         backgroundColor: Colors.black,
         body: Center(
           child: Column(
@@ -93,8 +92,8 @@ class _LocationState extends State<Location> {
               // button for taking the location
               FlatButton(
                 color: Colors.white,
-                onPressed: () {
-                  getCurrentLocation();
+                onPressed:  () {
+                  getCurrentLocation();//()
                 },
                 child: Text("Get User Location"),
               ),
@@ -102,7 +101,7 @@ class _LocationState extends State<Location> {
               FlatButton(
                 color: Colors.white,
                 onPressed: () {
-                  googleMap();
+                  googleMap; //()
                 },
                 child: Text("Open GoogleMap"),
               ),

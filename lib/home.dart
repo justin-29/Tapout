@@ -166,8 +166,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
 
-                              Ink.image(image: const AssetImage('assets/images/contact.png'), height: 100,),
-                              Text('Contact Us')
+                              Ink.image(image: const AssetImage('assets/images/about us.jpg'), height: 100,),
+                              Text('About Us')
                             ],
                           ),
                         ),
