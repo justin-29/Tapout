@@ -3,9 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:trial/first.dart';
 import 'package:trial/home.dart';
 
+import 'admin_home.dart';
 import 'models/user.dart';
 
-
+final AdminList =['8L8iPtkwvUhXwY4GCBCZDUULQVD3'];
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
 
@@ -16,7 +17,11 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return const FirstScreen();
     } else {
-      return  const HomeScreen();
+      if (AdminList.contains(user.uid)) {
+        return  const AdminHome();
+      }else{
+        return HomeScreen();
+      }
     }
   }
 }

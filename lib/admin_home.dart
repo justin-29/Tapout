@@ -2,34 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:trial/location.dart';
 import 'package:trial/services/auth.dart';
 import 'package:trial/client_info.dart';
-import 'package:trial/edit_form.dart';
 
-import 'emergency.dart';
-import 'models/client.dart';
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key, }) : super(key: key);
-
+class AdminHome extends StatefulWidget {
+  const AdminHome({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _AdminHomeState createState() => _AdminHomeState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-
+class _AdminHomeState extends State<AdminHome> {
   @override
   Widget build(BuildContext context) {
-    //final Client client;
     var size= MediaQuery.of(context).size;
     final AuthService _auth = AuthService();
-
     return Scaffold(
       backgroundColor: Colors.lightBlue[100],
       appBar: AppBar(
         title: const Text('TAP OUT'),
         actions: [
           IconButton(onPressed: () {
-            Navigator.push(context, new MaterialPageRoute(
+            Navigator.push(context, MaterialPageRoute(
                 builder: (context) => const ClientInfoScreen()
             ));
           }, icon: const Icon(Icons.info)),
@@ -73,8 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
-                            Text('    User',style: TextStyle(color: Colors.white, fontSize: 20),),
-
+                            Text('  Admin',style: TextStyle(color: Colors.white, fontSize: 20),),
                             Text('  Id123445',style: TextStyle(color: Colors.white, fontSize: 14),)
                           ],
                         )
@@ -97,8 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
 
-                              Ink.image(image: const AssetImage('assets/images/dashboard.png'), height: 100,),
-                              const Text('Dashboard')
+                              Ink.image(image: const NetworkImage('https://cdn-icons-png.flaticon.com/512/3652/3652191.png'), height: 100,),
+                              const Text('Schedule Outage')
                             ],
                           ),
                         ),
@@ -112,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
 
                               Ink.image(image: const AssetImage('assets/images/complaint.png'), height: 100,),
-                              const Text('Complaint Registration')
+                              const Text('Received  Complaints')
                             ],
                           ),
                         ),
@@ -130,26 +121,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                      InkWell(
-                          onTap:() {
-                            Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => Emergency()
-                            ));}
-                          ,child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)
-                            ),
-                            elevation: 4,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-
-                                Ink.image(image: const NetworkImage('https://cdn-icons-png.flaticon.com/512/564/564619.png'), height: 100,),
-                                const Text('Emergency')
-                              ],
-                            ),
-                          ),
-                        ),
+                        // Card(
+                        //   shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(8)
+                        //   ),
+                        //   elevation: 4,
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //
+                        //       Ink.image(image: const NetworkImage('https://cdn-icons-png.flaticon.com/512/564/564619.png'), height: 100,),
+                        //       const Text('Emergency')
+                        //     ],
+                        //   ),
+                        // ),
                         InkWell(
                           onTap:() {
                             Navigator.push(context, MaterialPageRoute(
@@ -172,20 +157,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
 
                         ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)
-                          ),
-                          elevation: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-
-                              Ink.image(image: const AssetImage('assets/images/about us.jpg'), height: 100,),
-                              Text('About Us')
-                            ],
-                          ),
-                        ),
+                        // Card(
+                        //   shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(8)
+                        //   ),
+                        //   elevation: 4,
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //
+                        //       Ink.image(image: const AssetImage('assets/images/about us.jpg'), height: 100,),
+                        //       Text('About Us')
+                        //     ],
+                        //   ),
+                        // ),
 
                       ],
                     ),
@@ -199,3 +184,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+

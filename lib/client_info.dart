@@ -34,6 +34,7 @@ class _ClientInfoScreenState extends State<ClientInfoScreen> {
     return StreamProvider<List<Client>?>.value(
         value: DatabaseService(uid: '').clients,
         initialData: null,
+
         child: Scaffold(
           appBar: AppBar(
             title: const Text('Client Info'),
