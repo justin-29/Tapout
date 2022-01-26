@@ -64,6 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
+  expandable_text:
+    dependency: "direct main"
+    description:
+      name: expandable_text
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
   fake_async:
     dependency: transitive
     description:
@@ -233,6 +240,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
+  gradient_ui_widgets:
+    dependency: "direct main"
+    description:
+      name: gradient_ui_widgets
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2-nullsafety"
   http_parser:
     dependency: transitive
     description:
