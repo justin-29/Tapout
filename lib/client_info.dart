@@ -1,12 +1,12 @@
-
 import 'package:trial/models/client.dart';
 
 import 'package:flutter/material.dart';
-import 'package:trial/services/auth.dart';
+//import 'package:trial/models/user.dart';
 import 'package:trial/services/database.dart';
 import 'package:provider/provider.dart';
 
 import 'client_list.dart';
+import 'edit_form.dart';
 
 class ClientInfoScreen extends StatefulWidget {
   const ClientInfoScreen({Key? key}) : super(key: key);
@@ -19,30 +19,31 @@ class _ClientInfoScreenState extends State<ClientInfoScreen> {
   TextEditingController phone = TextEditingController();
   TextEditingController location = TextEditingController();
 
-  final AuthService _auth = AuthService();
-
-
-
+  //final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
-    //final clients= Provider.of<QuerySnapshot>(context);
-    //print(clients.docs);
-    // for (var doc in clients.docs){
-    //   print(doc.data);
-    //}
+    void _showSettingsPanel(){
+      showModalBottomSheet(context: context, builder: (context) {
+        return Container(
+          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 60),
+          child: EditForm(),
+        );
+      });
+    }
     return StreamProvider<List<Client>?>.value(
-      value: DatabaseService(uid: '').clients,
-      initialData:null,
-      child: Scaffold(
-      appBar: AppBar(
-        title: const Text('Client Info'),
-        centerTitle: true,
-        actions: [IconButton(onPressed: (
-
-            ) {}, icon: const Icon(Icons.menu))],
-      ),
-      body: ClientList(),/*SingleChildScrollView(
+        value: DatabaseService(uid: '').clients,
+        initialData: null,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Client Info'),
+            centerTitle: true,
+            actions: [
+              IconButton(onPressed: ()=>_showSettingsPanel(), icon: const Icon(Icons.edit))
+            ],
+          ),
+          body:
+              ClientList(), /*SingleChildScrollView(
         child: Column(
           children: [
             const Padding(
@@ -155,8 +156,7 @@ class _ClientInfoScreenState extends State<ClientInfoScreen> {
                     child: const Text('Submit'))
               ],
             ),*/
-          )
-        );
+        ));
     //);
   }
 }
