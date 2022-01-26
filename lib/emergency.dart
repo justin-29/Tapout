@@ -16,62 +16,70 @@ class _EmergencyState extends State<Emergency> {
         title: const Text('TAP OUT Emergency'),
         centerTitle: true,
       ),
-      body: ListView(
-        padding: EdgeInsets.all(16),
-        children: [
-      Card(
-      margin: EdgeInsets.fromLTRB(20.0, 6, 20, 0),
-      child: ListTile(
-        leading: CircleAvatar(
-          radius: 25.0,
-          backgroundImage: NetworkImage('https://play-lh.googleusercontent.com/BoQUq1FnM3HcgRFyfl8vj45aof-waeGdcX9rgZOGkD4ToGXUIG1KnTQOGNurrSlUpx0') ,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/tower2.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: ListView(
+          padding: EdgeInsets.all(16),
+          children: [
+        Card(
+        margin: EdgeInsets.fromLTRB(20.0, 6, 20, 0),
+        child: ListTile(
+          leading: CircleAvatar(
+            radius: 25.0,
+            backgroundImage: NetworkImage('https://play-lh.googleusercontent.com/BoQUq1FnM3HcgRFyfl8vj45aof-waeGdcX9rgZOGkD4ToGXUIG1KnTQOGNurrSlUpx0') ,
+
+          ),
+          title: Text('022-349231'),
+          subtitle: Text('MSEB Hotline'),
 
         ),
-        title: Text('022-349231'),
-        subtitle: Text('MSEB Hotline'),
-
-      ),
     ),
-          Card(
-            margin: EdgeInsets.fromLTRB(20.0, 6, 20, 0),
-            child: ListTile(
-              leading: CircleAvatar(
-                radius: 25.0,
-                backgroundImage: NetworkImage('https://play-lh.googleusercontent.com/BoQUq1FnM3HcgRFyfl8vj45aof-waeGdcX9rgZOGkD4ToGXUIG1KnTQOGNurrSlUpx0') ,
+            Card(
+              margin: EdgeInsets.fromLTRB(20.0, 6, 20, 0),
+              child: ListTile(
+                leading: CircleAvatar(
+                  radius: 25.0,
+                  backgroundImage: NetworkImage('https://play-lh.googleusercontent.com/BoQUq1FnM3HcgRFyfl8vj45aof-waeGdcX9rgZOGkD4ToGXUIG1KnTQOGNurrSlUpx0') ,
+
+                ),
+                title: Text('mseb@gmail.com'),
+                subtitle: Text('MSEB Hotmail'),
 
               ),
-              title: Text('mseb@gmail.com'),
-              subtitle: Text('MSEB Hotmail'),
-
             ),
-          ),
-          Card(
-            margin: EdgeInsets.fromLTRB(20.0, 6, 20, 0),
-            child: ListTile(
-              leading: CircleAvatar(
-                radius: 25.0,
-                backgroundImage: NetworkImage('https://media.9curry.com/uploads/organization/image/1917/cidco-logo.png') ,
+            Card(
+              margin: EdgeInsets.fromLTRB(20.0, 6, 20, 0),
+              child: ListTile(
+                leading: CircleAvatar(
+                  radius: 25.0,
+                  backgroundImage: NetworkImage('https://media.9curry.com/uploads/organization/image/1917/cidco-logo.png') ,
+
+                ),
+                title: Text('1800-465431'),
+                subtitle: Text('CIDCO Hotline'),
 
               ),
-              title: Text('1800-465431'),
-              subtitle: Text('CIDCO Hotline'),
-
             ),
-          ),
-          Card(
-            margin: EdgeInsets.fromLTRB(20.0, 6, 20, 0),
-            child: ListTile(
-              leading: CircleAvatar(
-                radius: 25.0,
-                backgroundImage: NetworkImage('https://media.9curry.com/uploads/organization/image/1917/cidco-logo.png') ,
+            Card(
+              margin: EdgeInsets.fromLTRB(20.0, 6, 20, 0),
+              child: ListTile(
+                leading: CircleAvatar(
+                  radius: 25.0,
+                  backgroundImage: NetworkImage('https://media.9curry.com/uploads/organization/image/1917/cidco-logo.png') ,
+
+                ),
+                title: Text('cidco@gmail.com'),
+                subtitle: Text('CIDCO Hotmail'),
 
               ),
-              title: Text('cidco@gmail.com'),
-              subtitle: Text('CIDCO Hotmail'),
-
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
 

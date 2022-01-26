@@ -56,57 +56,67 @@ class _LocationState extends State<Location> {
         home: 
     Scaffold(
         backgroundColor: Colors.black,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.location_on,
-                size: 45.0,
-                color: Colors.white,
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Text(
-                "Get User Location",
-                style: TextStyle(
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/tower2.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.location_on,
+                  size: 45.0,
+                  color: Colors.black,
                 ),
-              ),
-              SizedBox(
-                height: 30.0,
-              ),
-              Text(
-                locationMessage,
-                style: TextStyle(
-                  color: Colors.white,
+                SizedBox(
+                  height: 20.0,
                 ),
-              ),
-              SizedBox(
-                height: 05.0,
-              ),
+                Text(
+                  "Get User Location",
+                  style: TextStyle(
+                    fontSize: 35.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(
+                  height: 30.0,
+                ),
+                Text(
+                  locationMessage,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(
+                  height: 05.0,
+                ),
 
-              // button for taking the location
-              FlatButton(
-                color: Colors.white,
-                onPressed:  () {
-                  getCurrentLocation();//()
-                },
-                child: Text("Get User Location"),
-              ),
-            
-              FlatButton(
-                color: Colors.white,
-                onPressed: () {
-                  googleMap; //()
-                },
-                child: Text("Open GoogleMap"),
-              ),
-            ],
+                // button for taking the location
+                FlatButton(
+                  color: Colors.white,
+                  onPressed:  () {
+                    getCurrentLocation();//()
+                  },
+                  child: Text("Get User Location"),
+                ),
+              
+                //FlatButton(
+                  //color: Colors.white,
+                  //onPressed: () {
+                   // googleMap; //()
+                 // },
+                  //child: Text("Open GoogleMap"),
+                //),
+              ],
+            ),
           ),
         ),
       ),
