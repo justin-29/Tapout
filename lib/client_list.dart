@@ -14,18 +14,19 @@ class ClientList extends StatefulWidget {
 class _ClientListState extends State<ClientList> {
   @override
   Widget build(BuildContext context) {
-    final clients= Provider.of<List<Client>?>(context);
-    clients!.forEach((client) {
-      print(client.username);
-      print(client.phone);
-      print(client.loc);
-      print(client.Email);
-    });
+    final clients = Provider.of<List<Client>?>(context) ?? [];
+    // clients.forEach((client) {
+    //   print(client.username);
+    //   print(client.phone);
+    //   print(client.loc);
+    //   print(client.Email);
+    // });
 
-    return ListView.builder(itemCount: clients.length, itemBuilder: (BuildContext context, int index) {
-      return ClientTile(client: clients[index]);
-    },
+    return ListView.builder(
+      itemCount: clients.length,
+      itemBuilder: (BuildContext context, int index) {
+        return ClientTile(client: clients[index]);
+      },
     );
   }
-
 }

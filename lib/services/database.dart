@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:trial/models/client.dart';
+import 'package:trial/models/user.dart';
 
 class DatabaseService {
   final String uid;
@@ -32,11 +33,27 @@ class DatabaseService {
          );
     }).toList();
   }
-  //get userdata
+  //userData from snapshot
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot){
+    return UserData(
+      uid: uid,
+      username: snapshot['username'],
+      phone: snapshot['phone'],
+      Email: snapshot['Email'],
+      loc: snapshot['loc'],
+    );
+  }
+
+  //get client stream userdata
   Stream<List<Client>>? get clients{
     return userdata.snapshots()
         .map(_clientListFromSnapshot);
   }
+  //get user doc stream
+Stream<UserData> get userData{
+    return userdata.doc(uid).snapshots()
+        .map(_userDataFromSnapshot);
+}
 
 }
 

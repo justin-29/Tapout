@@ -1,7 +1,7 @@
 import 'package:trial/models/client.dart';
 
 import 'package:flutter/material.dart';
-import 'package:trial/services/auth.dart';
+//import 'package:trial/models/user.dart';
 import 'package:trial/services/database.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +19,7 @@ class _ClientInfoScreenState extends State<ClientInfoScreen> {
   TextEditingController phone = TextEditingController();
   TextEditingController location = TextEditingController();
 
-  final AuthService _auth = AuthService();
+  //final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
