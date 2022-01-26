@@ -97,7 +97,7 @@ class _EditFormState extends State<EditForm> {
                     //dropdown
                     // DropdownButtonFormField(
                     //     decoration: textInputDecoration,
-                    //     value: (_currentLoc ?? userData.loc).toString(),
+                    //     //value: (_currentLoc ?? userData.loc).toString(),
                     //     hint: const Text('Select Location'),
                     //     items: Location.map((loc) {
                     //       return DropdownMenuItem(
@@ -123,7 +123,7 @@ class _EditFormState extends State<EditForm> {
                           // print(_currentName);
                           // print(_currentPhone);
                           // print(_currentLoc);
-                          // print(user.uid);
+                          print(user.uid);
                           if(_formkey.currentState!.validate()){
                             await DatabaseService(uid: user.uid).updateUserData(
                                 _currentName?? userData.username,

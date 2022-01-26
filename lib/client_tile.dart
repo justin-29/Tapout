@@ -17,6 +17,7 @@ class ClientTile extends StatelessWidget {
           leading: CircleAvatar(
             radius: 25.0,
             backgroundColor: Colors.blueAccent ,
+
           ),
           title: Text(client.username),
           subtitle: Text('Email: ${client.Email},phone: ${client.phone}, location: ${client.loc}'),
