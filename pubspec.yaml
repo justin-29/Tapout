@@ -36,6 +36,9 @@ dependencies:
   flutter_svg: ^1.0.1
   url_launcher: ^6.0.18 
   geolocator: ^8.0.3
+  geoflutterfire: ^3.0.2
+  location: ^4.3.0
+  google_maps_flutter: ^2.1.1
   flutter:
     sdk: flutter
 firebase_core: ^1.11.0
@@ -81,6 +84,7 @@ flutter:
     - assets/images/dashboard.png
     - assets/images/feedback.png
     - assets/images/about us.jpg
+    - assets/images/logo.jpg
 
 
   # To add assets to your application, add an assets section, like this:

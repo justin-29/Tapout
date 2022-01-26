@@ -57,6 +57,9 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
             ),
             const SizedBox(height: 20.0),
+            
+            Ink.image(image: const AssetImage('assets/images/logo.jpg'), height: 100,),
+            SizedBox(height: 45.0),
             ListTile(
               leading: const Icon(Icons.email),
               title: TextFormField(

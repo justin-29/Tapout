@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -46,13 +47,13 @@ class _LocationState extends State<Location> {
   @override
   Widget build(BuildContext context) {
      return
-     MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'User location application',
-       theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-       ),
-       home: 
+      MaterialApp(
+       debugShowCheckedModeBanner: false,
+       title: 'User location application',
+        theme: ThemeData(
+         visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: 
     Scaffold(
         backgroundColor: Colors.black,
         body: Center(
