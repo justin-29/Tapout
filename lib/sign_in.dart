@@ -47,19 +47,20 @@ class _SignInScreenState extends State<SignInScreen> {
         child: Column(
 
           children: [
-            const Padding(
-              padding: EdgeInsets.all(10),
-              child: CircleAvatar(
-                radius: 30,
-                child: Icon(
-                  Icons.login,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 5.0),
             
-            Ink.image(image: const AssetImage('assets/images/logo.jpg'), height: 100,),
+            Ink.image(image: const AssetImage('assets/images/Logo.png'), height:200,),
             SizedBox(height: 45.0),
+            // const Padding(
+            //   padding: EdgeInsets.all(10),
+            //   child: CircleAvatar(
+            //     radius: 30,
+            //     child: Icon(
+            //       Icons.login,
+            //     ),
+            //   ),
+            // ),
+            
             ListTile(
               leading: const Icon(Icons.email),
               title: TextFormField(
