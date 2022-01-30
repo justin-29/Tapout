@@ -6,6 +6,7 @@ import 'package:trial/services/auth.dart';
 import 'package:trial/client_info.dart';
 import 'package:trial/edit_form.dart';
 
+import 'dashboard.dart';
 import 'emergency.dart';
 import 'models/client.dart';
 
@@ -100,22 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       primary: false,
                       crossAxisCount: 2,
                       children: [
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          elevation: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Ink.image(
-                                image: const AssetImage(
-                                    'assets/images/dashboard.png'),
-                                height: 100,
-                              ),
-                              const Text('Dashboard')
-                            ],
-                          ),
-                        ),
+                        
                         InkWell(
                           onTap: () {
                             Navigator.push(
@@ -229,6 +215,30 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Dashboard()));
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            elevation: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Ink.image(
+                                  image: const AssetImage(
+                                      'assets/images/dashboard.png'),
+                                  height: 100,
+                                ),
+                                const Text('Dashboard')
+                              ],
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
