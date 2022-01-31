@@ -1,5 +1,5 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:trial/congratulations.dart';
 import 'package:trial/first.dart';
 import 'package:trial/services/auth.dart';
@@ -13,29 +13,94 @@ import 'package:provider/provider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:trial/home.dart';
 import 'models/user.dart';
-import 'dart:async';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+const AndroidNotificationChannel channel=AndroidNotificationChannel(
+  'outage_channel',//id
+  'Outage Channel',//title
+  //'This channel is used for outage notifications.',//description
+  importance: Importance.high,
+  playSound: true
+);
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin= FlutterLocalNotificationsPlugin();
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async{
+  await Firebase.initializeApp();
+  print('A big message just showed u: ${message.messageId}');
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // FirebaseMessaging.onMessage.listen(_firebasePushHandler);//vasu
-  // AwesomeNotifications().initialize(
-  //     null,
-  //     [
-  //       NotificationChannel(
-  //           channelKey: 'basic_channel',
-  //           channelName: 'Basic notifications',
-  //           channelDescription: 'Notification channel for basic tests',
-  //           defaultColor: Color(0xFF9D50DD),
-  //           ledColor: Colors.white
-  //       )
-  //     ]
-  // ); //vasu
 
+  //FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onMessage.listen(_firebaseMessagingBackgroundHandler);
+
+  await flutterLocalNotificationsPlugin
+  .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+  ?.createNotificationChannel(channel);
+
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+
+   //watchout
+  // @override
+  // void initState(){
+  //   super.initState();
+  //
+  //   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+  //     RemoteNotification? notification=message.notification;
+  //     AndroidNotification? android = message.notification?.android;
+  //     if(notification != null && android != null){
+  //       flutterLocalNotificationsPlugin.show(
+  //           notification.hashCode,
+  //           notification.title,
+  //           notification.body,
+  //           NotificationDetails(
+  //             android: AndroidNotificationDetails(
+  //               channel.id,
+  //               channel.name,
+  //               //channel.description,
+  //               color: Colors.blue,
+  //               playSound: true,
+  //               icon: '@mipmap/ic_launcher',
+  //             ),
+  //           ));
+  //     }
+  //   });
+  //   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+  //     print('A new onMessageOpenedApp event was publisherfed');
+  //     RemoteNotification? notification = message.notification;
+  //     AndroidNotification? android = message.notification?.android;
+  //     if (notification != null && android != null) {
+  //       showDialog(
+  //           context: context,
+  //           builder: (_){
+  //         return AlertDialog(
+  //           title: Text(notification.title ?? 'There was null value sorry:)'),
+  //           content: SingleChildScrollView(
+  //             child: Column(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: [
+  //                 Text(notification.body ?? 'There was null value sorry:)')
+  //               ],
+  //             ),
+  //           ),
+  //         );
+  //       });
+  //     }
+  //   });
+  // }
   runApp( StreamProvider<Users?>.value(
     value: AuthService().user,
     initialData: null,
     child: MaterialApp(
+
         debugShowCheckedModeBanner: false,
         initialRoute: '/wrapper',
         routes:{
@@ -46,14 +111,35 @@ Future<void> main() async {
           '/congratulations':(context)=> CongratulationScreen(),
          // '/sign_in':(context)=>SignInScreen(toggleView: null,),
            '/client_info':(context)=>const ClientInfoScreen(),
+
         }
+        //watchout
+
 
     ),
   ));
 }
-
-// Future<void> _firebasePushHandler(RemoteMessage message) async { //message from firebase console showed
-//   print("Message from push notification is ${message.data}");
-//   //firebase push notification
-//   AwesomeNotifications().createNotificationFromJsonData(message.data);
-// }//vasu
+// @override
+// void initState(){
+//   super.initState();
+//   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+//     RemoteNotification? notification=message.notification;
+//     AndroidNotification? android = message.notification?.android;
+//     if(notification != null && android != null){
+//       flutterLocalNotificationsPlugin.show(
+//           notification.hashCode,
+//           notification.title,
+//           notification.body,
+//           NotificationDetails(
+//             android: AndroidNotificationDetails(
+//               channel.id,
+//               channel.name,
+//               //channel.description,
+//               color: Colors.blue,
+//               playSound: true,
+//               icon: '@mipmap/ic_launcher',
+//             ),
+//           ));
+//     }
+//   });
+// }

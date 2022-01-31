@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
+
+
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 
 class Location extends StatefulWidget {
   // location
@@ -19,7 +20,7 @@ class _LocationState extends State<Location> {
   // but before that you need to add this permission!
   void getCurrentLocation() async {
     var position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+      desiredAccuracy: LocationAccuracy.high);
     var lat = position.latitude;
     var long = position.longitude;
 

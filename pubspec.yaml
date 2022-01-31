@@ -45,6 +45,7 @@ dependencies:
   expandable_text: ^2.2.0
   gradient_ui_widgets: ^1.0.2-nullsafety
   awesome_notifications: ^0.6.21
+  flutter_local_notifications: ^9.2.0
   
 
 
