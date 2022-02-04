@@ -16,19 +16,23 @@ import 'models/user.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-const AndroidNotificationChannel channel=AndroidNotificationChannel(
-  'outage_channel',//id
-  'Outage Channel',//title
-  //'This channel is used for outage notifications.',//description
-  importance: Importance.high,
-  playSound: true
-);
+const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    'outage_channel', //id
+    'Outage Channel', //title
+    //'This channel is used for outage notifications.',//description
+    importance: Importance.high,
+    playSound: true);
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin= FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async{
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print('A big message just showed u: ${message.messageId}');
+}
+
+class RemoteMessage {
+  var messageId;
 }
 
 Future<void> main() async {
@@ -39,8 +43,9 @@ Future<void> main() async {
   FirebaseMessaging.onMessage.listen(_firebaseMessagingBackgroundHandler);
 
   await flutterLocalNotificationsPlugin
-  .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
-  ?.createNotificationChannel(channel);
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
 
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
@@ -48,11 +53,11 @@ Future<void> main() async {
     sound: true,
   );
 
-   //watchout
+  //  watchout
   // @override
   // void initState(){
   //   super.initState();
-  //
+
   //   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
   //     RemoteNotification? notification=message.notification;
   //     AndroidNotification? android = message.notification?.android;
@@ -96,28 +101,35 @@ Future<void> main() async {
   //     }
   //   });
   // }
-  runApp( StreamProvider<Users?>.value(
+  runApp(StreamProvider<Users?>.value(
     value: AuthService().user,
     initialData: null,
     child: MaterialApp(
-
         debugShowCheckedModeBanner: false,
         initialRoute: '/wrapper',
-        routes:{
-          '/wrapper':(context)=> const Wrapper(),
-          '/home':(context)=>  HomeScreen(),
-          '/first':(context)=>const FirstScreen(),
+        routes: {
+          '/wrapper': (context) => const Wrapper(),
+          '/home': (context) => HomeScreen(),
+          '/first': (context) => const FirstScreen(),
           //'/registration_screen':(context)=>RegistrationScreen(),
-          '/congratulations':(context)=> CongratulationScreen(),
-         // '/sign_in':(context)=>SignInScreen(toggleView: null,),
-           '/client_info':(context)=>const ClientInfoScreen(),
-
+          '/congratulations': (context) => CongratulationScreen(),
+          // '/sign_in':(context)=>SignInScreen(toggleView: null,),
+          '/client_info': (context) => const ClientInfoScreen(),
         }
         //watchout
 
-
-    ),
+        ),
   ));
+}
+
+class FirebaseMessaging {
+  static var onMessage;
+
+  static var instance;
+}
+
+class AndroidFlutterLocalNotificationsPlugin {
+  createNotificationChannel(AndroidNotificationChannel channel) {}
 }
 // @override
 // void initState(){
