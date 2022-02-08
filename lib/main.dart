@@ -31,16 +31,20 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('A big message just showed u: ${message.messageId}');
 }
 
-class RemoteMessage {
-  var messageId;
-}
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  //FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  FirebaseMessaging.onMessage.listen(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    RemoteNotification? notification = message.notification;
+    AndroidNotification? android = message.notification?.android;
+    if (notification != null && android != null) {
+      //if(message.notification != null){
+      print(message.notification!.body);
+      print(message.notification!.title);
+    }
+  });
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
@@ -53,11 +57,11 @@ Future<void> main() async {
     sound: true,
   );
 
-  //  watchout
+  //watchout
   // @override
   // void initState(){
   //   super.initState();
-
+  //
   //   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
   //     RemoteNotification? notification=message.notification;
   //     AndroidNotification? android = message.notification?.android;
@@ -121,16 +125,6 @@ Future<void> main() async {
         ),
   ));
 }
-
-class FirebaseMessaging {
-  static var onMessage;
-
-  static var instance;
-}
-
-class AndroidFlutterLocalNotificationsPlugin {
-  createNotificationChannel(AndroidNotificationChannel channel) {}
-}
 // @override
 // void initState(){
 //   super.initState();
@@ -154,4 +148,4 @@ class AndroidFlutterLocalNotificationsPlugin {
 //           ));
 //     }
 //   });
-// }
+//}

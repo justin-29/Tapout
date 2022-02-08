@@ -11,7 +11,8 @@ class ComplaintScreen extends StatefulWidget {
 }
 
 class _ComplaintScreenState extends State<ComplaintScreen> {
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  CollectionReference Complaints =
+      FirebaseFirestore.instance.collection('Complaints');
   late String email;
   late String nam;
   late String comp;
@@ -151,11 +152,11 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      await users.add({
-                        'name': 'nam',
-                        'phone': 'phon',
-                        'email': 'email',
-                        'complaint': 'comp'
+                      await Complaints.add({
+                        'name': nam,
+                        'phone': phon,
+                        'email': email,
+                        'complaint': comp
                       }).then((value) => print('complaint registered'));
                     },
                     child: Text("Submit")),
