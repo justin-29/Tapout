@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ComplaintScreen extends StatefulWidget {
   const ComplaintScreen({Key? key}) : super(key: key);
@@ -10,6 +11,13 @@ class ComplaintScreen extends StatefulWidget {
 }
 
 class _ComplaintScreenState extends State<ComplaintScreen> {
+  CollectionReference Complaints =
+      FirebaseFirestore.instance.collection('Complaints');
+  late String email;
+  late String nam;
+  late String comp;
+  late String phon;
+
   @override
   TextEditingController _nameController = TextEditingController();
   var _formKey = GlobalKey<FormState>();
@@ -38,6 +46,9 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                 ),
                 Container(
                   child: TextField(
+                    onChanged: (value) {
+                      nam = value;
+                    },
                     controller: _nameController,
                     decoration: InputDecoration(
                         fillColor: Colors.white70,
@@ -65,6 +76,9 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                 ),
                 Container(
                   child: TextField(
+                    onChanged: (val) {
+                      phon = val;
+                    },
                     decoration: InputDecoration(
                         fillColor: Colors.white70,
                         filled: true,
@@ -88,6 +102,9 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                 ),
                 Container(
                   child: TextField(
+                    onChanged: (value) {
+                      email = value;
+                    },
                     decoration: InputDecoration(
                         fillColor: Colors.white70,
                         filled: true,
@@ -114,6 +131,9 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                 Container(
                   width: 375,
                   child: TextField(
+                    onChanged: (value) {
+                      comp = value;
+                    },
                     decoration: InputDecoration(
                       hintText: "Type your complaint here",
                       hintStyle: TextStyle(fontSize: 18),
@@ -130,11 +150,16 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                RaisedButton(
-                    child: Text('Submit'),
-                    onPressed: () {
-                      print("Name" + _nameController.text);
-                    }),
+                ElevatedButton(
+                    onPressed: () async {
+                      await Complaints.add({
+                        'name': nam,
+                        'phone': phon,
+                        'email': email,
+                        'complaint': comp
+                      }).then((value) => print('complaint registered'));
+                    },
+                    child: Text("Submit")),
               ],
             ))),
       ),
@@ -142,22 +167,33 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
   }
 }
 // void main() {
-  
+
 //   String namelen;
 
 //   runApp(MaterialApp(
-//       home: 
+//       home:
 
-  
-
-    // decoration: BoxDecoration(
-    //   image: DecorationImage(
-    //     image: AssetImage(
-    //         'D:\BC\New folder\flutter_application_1\build\flutter_assets\3599451.jpg'),
-    //     fit: BoxFit.cover,
-    //   ),
-    // ),
-  
+// decoration: BoxDecoration(
+//   image: DecorationImage(
+//     image: AssetImage(
+//         'D:\BC\New folder\flutter_application_1\build\flutter_assets\3599451.jpg'),
+//     fit: BoxFit.cover,
+//   ),
+// ),
 
 
 
+
+//under elevated button
+
+// ElevatedButton(onPressed: () async{
+
+//   await users.add({'name':'fullname','phone':'Phoneno','email':'E-mail',}).then((value) => print('complaint registered'))
+
+// },child: Text("Submit"))
+
+// onChanged: (value){
+//   textNote = value;
+// },
+
+// textNote
