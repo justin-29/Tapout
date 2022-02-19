@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:trial/about_us.dart';
 import 'package:trial/complaint.dart';
@@ -20,6 +21,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  // @override
+  // void initState(){
+  //   super.initState();
+  //
+  //   FirebaseMessaging.onMessage.listen((messge){
+  //     if(messge.notification != null){
+  //       print(message.notification!.body);
+  //       print(message.notification!.title);
+  //     }
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     //final Client client;
@@ -101,6 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       primary: false,
                       crossAxisCount: 2,
                       children: [
+
                         InkWell(
                           onTap: () {
                             Navigator.push(
@@ -238,6 +253,30 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Dashboard()));
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            elevation: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Ink.image(
+                                  image: const AssetImage(
+                                      'assets/images/dashboard.png'),
+                                  height: 100,
+                                ),
+                                const Text('Dashboard')
+                              ],
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),

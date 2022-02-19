@@ -35,8 +35,18 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
+
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  FirebaseMessaging.onOpenedAppMessage(_firebaseMessagingBackgroundHandler);
+ FirebaseMessaging.onMessage.listen((RemoteMessage message){
+   RemoteNotification? notification=message.notification;
+   AndroidNotification? android = message.notification?.android;
+       if(notification != null && android != null){
+   //if(message.notification != null){
+     print(message.notification!.body);
+     print(message.notification!.title);
+   }
+  });
+
 
   await flutterLocalNotificationsPlugin
   .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
@@ -142,4 +152,4 @@ Future<void> main() async {
 //           ));
 //     }
 //   });
-// }
+//}
