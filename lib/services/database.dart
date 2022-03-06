@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:trial/models/client.dart';
+import 'package:trial/models/notif.dart';
 import 'package:trial/models/user.dart';
+import 'package:trial/models/complaint.dart';
 
 class DatabaseService {
   final String uid;
@@ -11,6 +13,15 @@ class DatabaseService {
   //collection reference
   final CollectionReference userdata = FirebaseFirestore.instance.collection(
       'clients');
+
+  final CollectionReference notifi = FirebaseFirestore.instance.collection(
+      'notifications');
+
+  final CollectionReference comp = FirebaseFirestore.instance.collection(
+      'Complaints');
+
+
+  // CLIENT LIST
 
   Future updateUserData(String username, String phone, String loc,
       String Email) async {
@@ -54,6 +65,58 @@ Stream<UserData> get userData{
     return userdata.doc(uid).snapshots()
         .map(_userDataFromSnapshot);
 }
+
+
+
+
+
+
+
+// NOTIFICATION LIST
+
+//   Future updateNotifi( String time, String date, String reason, String loc) async {
+//     return await notifi.doc(uid).set({
+//       'time': time,
+//       'date': date,
+//       'loc': loc,
+//       'reason': reason,
+//     });
+//   }
+
+  List<Notif> _notificaitonListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      //print(doc.data);
+      return Notif(
+          time: doc['time'] ?? '',
+          loc: doc['loc'] ?? '',
+          date: doc['date'] ?? '',
+          reason: doc['reason'] ?? ''
+      );
+    }).toList();
+  }
+  Stream<List<Notif>>? get notifications{
+    return notifi.snapshots()
+        .map(_notificaitonListFromSnapshot);
+  }
+
+
+
+  // COMPLAINTS
+  List<Complaint> _complaintsListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      //print(doc.data);
+      return Complaint(
+          complaint: doc['complaint'] ?? '',
+          name: doc['name'] ?? '',
+          email: doc['email'] ?? '',
+          phone: doc['phone'] ?? ''
+      );
+    }).toList();
+  }
+  Stream<List<Complaint>>? get complaints{
+    return comp.snapshots()
+        .map(_complaintsListFromSnapshot);
+  }
 
 }
 

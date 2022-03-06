@@ -9,18 +9,25 @@ import 'package:trial/edit_form.dart';
 
 import 'dashboard.dart';
 import 'emergency.dart';
+import 'package:trial/models/user.dart';
 import 'models/client.dart';
+import 'notification_info.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({
-    Key? key,
-  }) : super(key: key);
+
+
+   HomeScreen({Key? key,}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late String name;
+  // final String uid;
+  // Ho({required this.uid});
+
+ // _HomeScreenState(this.name);
   // @override
   // void initState(){
   //   super.initState();
@@ -48,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    new MaterialPageRoute(
+                     MaterialPageRoute(
                         builder: (context) => const ClientInfoScreen()));
               },
               icon: const Icon(Icons.info)),
@@ -91,17 +98,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
-                              '    User',
+                              //name,
+                              'User',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),
                             Text(
+                              //Users(uid: uid),
                               '  Id123445',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 14),
                             ),
+
                           ],
                         )
                       ],
@@ -114,30 +124,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       primary: false,
                       crossAxisCount: 2,
                       children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Dashboard()));
-                          },
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            elevation: 4,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Ink.image(
-                                  image: const AssetImage(
-                                      'assets/images/dashboard.png'),
-                                  height: 100,
-                                ),
-                                const Text('Dashboard')
-                              ],
-                            ),
-                          ),
-                        ),
                         InkWell(
                           onTap: () {
                             Navigator.push(
@@ -163,7 +149,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                        Card(
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                          const ComplaintScreen())
+                  );
+                },
+                child:
+                Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),
                           elevation: 4,
@@ -179,6 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
+              ),
                         InkWell(
                           onTap: () {
                             Navigator.push(
@@ -282,7 +279,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),

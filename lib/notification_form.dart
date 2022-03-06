@@ -1,45 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:trial/models/user.dart';
+//import 'package:provider/provider.dart';
+//import 'package:trial/models/user.dart';
 import 'package:trial/services/database.dart';
 import 'package:trial/shared/constants.dart';
 import 'package:trial/shared/loading.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class EditForm extends StatefulWidget {
-   EditForm({Key? key}) : super(key: key);
+class NotificationForm extends StatefulWidget {
+  NotificationForm({Key? key}) : super(key: key);
 
   @override
-  _EditFormState createState() => _EditFormState();
+  _NotificationFormState createState() => _NotificationFormState();
 }
 
-class _EditFormState extends State<EditForm> {
+class _NotificationFormState extends State<NotificationForm> {
 
- // TextEditingController name= TextEditingController();
+  CollectionReference notifi =
+  FirebaseFirestore.instance.collection('notifications');
+  // TextEditingController name= TextEditingController();
   final _formkey = GlobalKey<FormState>();
-  final List<String> Location = [
-    'Seawoods',
-    'New Panvel',
-    'Satara',
-    'Kalamboli',
-  ];
+
 
 //form values
-  String? _currentName;
+  String? _currentDate;
+  String? _currentTime;
+  String? _currentReason;
   String? _currentLoc;
-  String? _currentPhone;
-  String? _currentEmail;
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<Users?>(context);
-
-    return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user!.uid).userData,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            UserData? userData = snapshot.data;
-
+    //final user = Provider.of<Users?>(context);
             return Form(
               key: _formkey,
               child: SingleChildScrollView(
@@ -49,7 +40,7 @@ class _EditFormState extends State<EditForm> {
                       height: 10,
                     ),
                     const Text(
-                      'Update your info',
+                      'Add new notification',
                       style: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
@@ -61,42 +52,42 @@ class _EditFormState extends State<EditForm> {
                     //DatePickerDateTimeOrder(),
                     TextFormField(
                       //controller: name,
-                      initialValue: userData!.username,
+                      //initialValue: userData!.username,
                       validator: (val) =>
-                          val!.isEmpty ? 'Enter a username' : null,
+                      val!.isEmpty ? 'Enter a date in string' : null,
                       decoration:
-                          textInputDecoration.copyWith(hintText: 'Username'),
-                      onChanged: (val) => setState(() => _currentName = val),
+                      textInputDecoration.copyWith(hintText: 'Date'),
+                      onChanged: (val) => setState(() => _currentDate = val),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
-                      initialValue: userData.phone,
-                      validator: (val) => val!.isEmpty ? 'Enter a phone' : null,
+                      //initialValue: userData.phone,
+                      validator: (val) => val!.isEmpty ? 'Enter a time in string' : null,
                       decoration:
-                          textInputDecoration.copyWith(hintText: 'Phone'),
-                      onChanged: (val) => setState(() => _currentPhone = val),
+                      textInputDecoration.copyWith(hintText: 'Time'),
+                      onChanged: (val) => setState(() => _currentTime = val),
                     ),
 
                     const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
-                      initialValue: userData.Email,
-                      validator: (val) => val!.isEmpty ? 'Enter a email' : null,
+                      //initialValue: userData.Email,
+                      validator: (val) => val!.isEmpty ? 'Enter duration/reason' : null,
                       decoration:
-                          textInputDecoration.copyWith(hintText: 'Email'),
-                      onChanged: (val) => setState(() => _currentEmail = val),
+                      textInputDecoration.copyWith(hintText: 'Duration/Reason'),
+                      onChanged: (val) => setState(() => _currentReason = val),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
-                      initialValue: userData.loc,
+                      //initialValue: userData.loc,
                       validator: (val) => val!.isEmpty ? 'Enter a Location' : null,
                       decoration:
-                          textInputDecoration.copyWith(hintText: 'Location'),
+                      textInputDecoration.copyWith(hintText: 'Location'),
                       onChanged: (val) => setState(() => _currentLoc = val),
                     ),
                     //dropdown
@@ -118,7 +109,7 @@ class _EditFormState extends State<EditForm> {
                       height: 20,
                     ),
                     ElevatedButton(
-                        //color: Colors.green,
+                      //color: Colors.green,
                         child: const Text(
                           'Update',
                           style: TextStyle(color: Colors.white),
@@ -128,15 +119,16 @@ class _EditFormState extends State<EditForm> {
                           // print(_currentName);
                           // print(_currentPhone);
                           // print(_currentLoc);
-                          print(user.uid);
+                          //print(user.uid);
                           if(_formkey.currentState!.validate()){
-                            await DatabaseService(uid: user.uid).updateUserData(
-                                _currentName?? userData.username,
-                                _currentPhone?? userData.phone,
-                                _currentLoc?? userData.loc,
-                                _currentEmail?? userData.Email);
-                            print(userData.username);
-                            Navigator.pop(context,userData.username);//,name.text);
+                            await notifi.add({
+                              'date':_currentDate,
+                              'time':_currentTime,
+                              'loc':_currentLoc,
+                              'reason':_currentReason
+                            }).then((value) => print('Notification registered'));
+
+                            Navigator.pop(context);//,name.text);
                           }
                         }),
                     const SizedBox(
@@ -146,9 +138,6 @@ class _EditFormState extends State<EditForm> {
                 ),
               ),
             );
-          } else {
-            return Loading();
-          }
-        });
-  }
+
+ }
 }

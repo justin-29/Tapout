@@ -10,6 +10,8 @@ final AdminList =['8L8iPtkwvUhXwY4GCBCZDUULQVD3'];
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<Users?>(context);
@@ -20,7 +22,7 @@ class Wrapper extends StatelessWidget {
       if (AdminList.contains(user.uid)) {
         return  const AdminHome();
       }else{
-        return HomeScreen();
+        return HomeScreen();//HomeScreen(uid: user!.uid).userData;
       }
     }
   }

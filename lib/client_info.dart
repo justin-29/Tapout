@@ -1,12 +1,13 @@
-import 'package:trial/models/client.dart';
+
 
 import 'package:flutter/material.dart';
-//import 'package:trial/models/user.dart';
+import 'package:trial/models/user.dart';
 import 'package:trial/services/database.dart';
 import 'package:provider/provider.dart';
 
 import 'client_list.dart';
 import 'edit_form.dart';
+import 'models/client.dart';
 
 class ClientInfoScreen extends StatefulWidget {
   const ClientInfoScreen({Key? key}) : super(key: key);

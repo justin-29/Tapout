@@ -158,7 +158,13 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         'email': email,
                         'complaint': comp
                       }).then((value) => print('complaint registered'));
+                      Navigator.pop(context);
+
                     },
+              //       return const SimpleDialog(
+              //       contentPadding: EdgeInsets.all(20),
+              // children: [Text('COmaplaint Submitted')],
+              //   ),
                     child: Text("Submit")),
               ],
             ))),

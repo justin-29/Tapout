@@ -87,16 +87,7 @@ flutter:
 
 
   assets:
-    - assets/images/head.png
-    - assets/images/contact.png
-    - assets/images/complaint.png
-    - assets/images/dashboard.png
-    - assets/images/feedback.png
-    - assets/images/about us.jpg
-    - assets/images/Logo.png
-    - assets/images/tower.png
-    - assets/images/tower2.png
-    - assets/images/complainn.jpg
+    - assets/images/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

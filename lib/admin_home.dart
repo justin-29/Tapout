@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:trial/complaint_info.dart';
 import 'package:trial/location.dart';
 import 'package:trial/services/auth.dart';
 import 'package:trial/client_info.dart';
+
+import 'notification_info.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({Key? key}) : super(key: key);
@@ -79,6 +82,15 @@ class _AdminHomeState extends State<AdminHome> {
                       primary: false,
                       crossAxisCount: 2,
                       children: [
+                        InkWell(
+                        onTap: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                  builder: (context) =>
+                  const NotificationInfoScreen()));
+                  },
+                    child:
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)
@@ -93,6 +105,16 @@ class _AdminHomeState extends State<AdminHome> {
                             ],
                           ),
                         ),
+                        ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                          const ComplaintInfoScreen()));
+                },
+                child:
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)
@@ -107,6 +129,7 @@ class _AdminHomeState extends State<AdminHome> {
                             ],
                           ),
                         ),
+              ),
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)

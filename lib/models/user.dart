@@ -2,6 +2,8 @@ class Users{
    final String uid;
    Users({required this.uid});
 
+  //Object get username => null;
+
 }
 class UserData{
    final String uid;
