@@ -3,6 +3,8 @@ import 'package:trial/models/client.dart';
 import 'package:provider/provider.dart';
 import 'package:trial/services/database.dart';
 import 'client_tile.dart';
+
+import 'models/notif.dart';
 import 'models/user.dart';
 
 class ClientList extends StatefulWidget {
@@ -24,15 +26,16 @@ class _ClientListState extends State<ClientList> {
   //           UserData? userData = snapshot.data;
 
      final clients = Provider.of<List<Client>?>(context) ?? [];
-
+     final notification = Provider.of<List<Notif>?>(context) ?? [];
 
 
 
     // final c = [];
     // clients.forEach((client) {
-    //   if (client.username =='Ojas') {
+    //   notification.forEach((notification) {if (client.loc ==notification.loc) {
     //     c.add(client);
-    //   }
+    //   } });
+    //
     // });
 
 

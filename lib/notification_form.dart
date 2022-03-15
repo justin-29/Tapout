@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:provider/provider.dart';
@@ -111,7 +112,7 @@ class _NotificationFormState extends State<NotificationForm> {
                     ElevatedButton(
                       //color: Colors.green,
                         child: const Text(
-                          'Update',
+                          'Add',
                           style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () async {
@@ -127,7 +128,12 @@ class _NotificationFormState extends State<NotificationForm> {
                               'loc':_currentLoc,
                               'reason':_currentReason
                             }).then((value) => print('Notification registered'));
-
+                            AwesomeNotifications().createNotification(
+                                content: NotificationContent(
+                                    id: 10,
+                                    channelKey: 'basic_channel',
+                                    title: 'Outage Notification',
+                                    body: _currentReason));
                             Navigator.pop(context);//,name.text);
                           }
                         }),

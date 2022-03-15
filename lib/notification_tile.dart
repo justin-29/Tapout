@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:trial/edit_notification_form.dart';
 import 'package:trial/models/notif.dart';
+
+import 'models/noti.dart';
 
 class NotificationTile extends StatelessWidget {
   //const ClientTile({Key? key}) : super(key: key);
@@ -9,6 +14,15 @@ class NotificationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final notification = Provider.of<Noti?>(context);
+    void _showSettingsPanel(){
+      showModalBottomSheet(context: context, builder: (context) {
+        return Container(
+          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 60),
+          child: EditNotificationForm(),//uid:notification!.uid),
+        );
+      });
+    }
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Card(
@@ -21,6 +35,9 @@ class NotificationTile extends StatelessWidget {
           // ),
           title: Text('Date: ${notif.date},Time: ${notif.time}'),
           subtitle: Text('Reason: ${notif.reason},location: ${notif.loc}'),
+          //trailing: IconButton(onPressed: ()=>_showSettingsPanel(), icon: const Icon(Icons.edit),
+          trailing: IconButton(onPressed: ()=>FirebaseFirestore.instance.collection('notifications').doc('id').delete(), icon: const Icon(Icons.delete),
+          ),
 
         ),
       ),

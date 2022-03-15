@@ -207,8 +207,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 content: NotificationContent(
                                     id: 10,
                                     channelKey: 'basic_channel',
-                                    title: 'Simple Notification',
-                                    body: 'Simple body'));
+                                    title: 'UnSimple Notification',
+                                    body: 'UnSimple body'));
 
                             Navigator.push(
                                 context,
@@ -261,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Dashboard()));
+                                    builder: (context) => NotificationInfoScreen()));
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(

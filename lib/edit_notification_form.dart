@@ -1,24 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:trial/models/user.dart';
+//import 'package:provider/provider.dart';
+import 'package:trial/models/noti.dart';
 import 'package:trial/services/database.dart';
 import 'package:trial/shared/constants.dart';
 import 'package:trial/shared/loading.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class EditForm extends StatefulWidget {
-   EditForm({Key? key}) : super(key: key);
+import 'models/noti.dart';
 
+class EditNotificationForm extends StatefulWidget {
+
+  late String uid;
+  //EditNotificationForm(this.uid);
+  EditNotificationForm({Key? key}) : super(key: key);
 
   @override
-  _EditFormState createState() => _EditFormState();
+  _EditNotificationFormState createState() => _EditNotificationFormState();
 }
 
-class _EditFormState extends State<EditForm> {
-
- // TextEditingController name= TextEditingController();
+class _EditNotificationFormState extends State<EditNotificationForm> {
+  CollectionReference notifi =
+  FirebaseFirestore.instance.collection('notifications');
+late String uid;
+  // TextEditingController name= TextEditingController();
   final _formkey = GlobalKey<FormState>();
-
   final List<String> Location = [
     'Seawoods',
     'New Panvel',
@@ -27,21 +34,21 @@ class _EditFormState extends State<EditForm> {
   ];
 
 //form values
-  String? _currentName;
+  String? _currentDate;
+  String? _currentTime;
+  String? _currentReason;
   String? _currentLoc;
-  String? _currentPhone;
-  String? _currentEmail;
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<Users?>(context);
+    final notification = Provider.of<Noti?>(context);
 
-    return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user!.uid).userData,
+    return StreamBuilder<noti>(
+        stream: DatabaseService(uid: notification!.uid).notif,
 
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            UserData? userData = snapshot.data;
+            noti? NOTI = snapshot.data;
 
             return Form(
               key: _formkey,
@@ -64,42 +71,42 @@ class _EditFormState extends State<EditForm> {
                     //DatePickerDateTimeOrder(),
                     TextFormField(
                       //controller: name,
-                      initialValue: userData!.username,
+                      initialValue: NOTI!.time,
                       validator: (val) =>
-                          val!.isEmpty ? 'Enter a username' : null,
+                      val!.isEmpty ? 'Enter a time' : null,
                       decoration:
-                          textInputDecoration.copyWith(hintText: 'Username'),
-                      onChanged: (val) => setState(() => _currentName = val),
+                      textInputDecoration.copyWith(hintText: 'time'),
+                      onChanged: (val) => setState(() => _currentTime = val),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
-                      initialValue: userData.phone,
-                      validator: (val) => val!.isEmpty ? 'Enter a phone' : null,
+                      initialValue: NOTI.date,
+                      validator: (val) => val!.isEmpty ? 'Enter a date' : null,
                       decoration:
-                          textInputDecoration.copyWith(hintText: 'Phone'),
-                      onChanged: (val) => setState(() => _currentPhone = val),
+                      textInputDecoration.copyWith(hintText: 'Date'),
+                      onChanged: (val) => setState(() => _currentDate = val),
                     ),
 
                     const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
-                      initialValue: userData.Email,
-                      validator: (val) => val!.isEmpty ? 'Enter a email' : null,
+                      initialValue: NOTI.reason,
+                      validator: (val) => val!.isEmpty ? 'Enter a reason' : null,
                       decoration:
-                          textInputDecoration.copyWith(hintText: 'Email'),
-                      onChanged: (val) => setState(() => _currentEmail = val),
+                      textInputDecoration.copyWith(hintText: 'Reason'),
+                      onChanged: (val) => setState(() => _currentReason = val),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
-                      initialValue: userData.loc,
+                      initialValue:NOTI.loc,
                       validator: (val) => val!.isEmpty ? 'Enter a Location' : null,
                       decoration:
-                          textInputDecoration.copyWith(hintText: 'Location'),
+                      textInputDecoration.copyWith(hintText: 'Location'),
                       onChanged: (val) => setState(() => _currentLoc = val),
                     ),
                     //dropdown
@@ -121,7 +128,7 @@ class _EditFormState extends State<EditForm> {
                       height: 20,
                     ),
                     ElevatedButton(
-                        //color: Colors.green,
+                      //color: Colors.green,
                         child: const Text(
                           'Update',
                           style: TextStyle(color: Colors.white),
@@ -131,19 +138,40 @@ class _EditFormState extends State<EditForm> {
                           // print(_currentName);
                           // print(_currentPhone);
                           // print(_currentLoc);
-                          print(user.uid);
+                          //print(user.uid);
                           if(_formkey.currentState!.validate()){
-                            await DatabaseService(uid: user.uid).updateUserData(
-                                _currentName?? userData.username,
-                                _currentPhone?? userData.phone,
-                                _currentLoc?? userData.loc,
-                                _currentEmail?? userData.Email);
-                            print(userData.username);
-                            Navigator.pop(context,userData.username);//,name.text);
+                            await DatabaseService(uid: notification.uid).updateNotifi(
+                                _currentTime?? NOTI.time,
+                                _currentDate?? NOTI.date,
+                                _currentLoc?? NOTI.loc,
+                                _currentReason?? NOTI.reason);
+                            //print(userData.username);
+                            Navigator.pop(context,NOTI.date);//,name.text);
                           }
                         }),
                     const SizedBox(
-                      height: 200,
+                      height: 100,
+                    ),
+                    // ElevatedButton(
+                    //   //color: Colors.green,
+                    //     child: const Text(
+                    //       'DAlete',
+                    //       style: TextStyle(color: Colors.white),
+                    //     ),
+                    //     onPressed: () async {
+                    //       // print(_currentEmail);
+                    //       // print(_currentName);
+                    //       // print(_currentPhone);
+                    //       // print(_currentLoc);
+                    //       //print(user.uid);
+                    //       //if(_formkey.currentState!.validate()){
+                    //         //await notifi.document(snapshot.data.documents[index]['uid']).delete();
+                    //         //print(userData.username);
+                    //         Navigator.pop(context);//,name.text);
+                    //       }
+                    //     }),
+                    const SizedBox(
+                      height: 100,
                     ),
                   ],
                 ),
