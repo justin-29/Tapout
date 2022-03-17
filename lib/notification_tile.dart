@@ -14,7 +14,7 @@ class NotificationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final notification = Provider.of<Noti?>(context);
+    final notification = Provider.of<noti?>(context);
     void _showSettingsPanel(){
       showModalBottomSheet(context: context, builder: (context) {
         return Container(
@@ -33,11 +33,11 @@ class NotificationTile extends StatelessWidget {
           //   backgroundColor: Colors.blueAccent ,
           //
           // ),
-          title: Text('Date: ${notif.date},Time: ${notif.time}'),
-          subtitle: Text('Reason: ${notif.reason},location: ${notif.loc}'),
+          title: Text('Mode: ${notif.mode}\nDate: ${notif.date}\nTime: ${notif.time}'),
+          subtitle: Text('Reason: ${notif.reason}\nlocation: ${notif.loc}'),
           //trailing: IconButton(onPressed: ()=>_showSettingsPanel(), icon: const Icon(Icons.edit),
-          trailing: IconButton(onPressed: ()=>FirebaseFirestore.instance.collection('notifications').doc('id').delete(), icon: const Icon(Icons.delete),
-          ),
+          // trailing: IconButton(onPressed: ()=>FirebaseFirestore.instance.collection('notifications').doc(notifications.docId).delete(), icon: const Icon(Icons.delete),
+          // ),
 
         ),
       ),

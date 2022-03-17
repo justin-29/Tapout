@@ -26,11 +26,9 @@ class _EditNotificationFormState extends State<EditNotificationForm> {
 late String uid;
   // TextEditingController name= TextEditingController();
   final _formkey = GlobalKey<FormState>();
-  final List<String> Location = [
-    'Seawoods',
-    'New Panvel',
-    'Satara',
-    'Kalamboli',
+  final List<String> Mode = [
+    'Electricity',
+    'Water',
   ];
 
 //form values
@@ -38,13 +36,14 @@ late String uid;
   String? _currentTime;
   String? _currentReason;
   String? _currentLoc;
+  String? _currentMode;
 
   @override
   Widget build(BuildContext context) {
     final notification = Provider.of<Noti?>(context);
 
     return StreamBuilder<noti>(
-        stream: DatabaseService(uid: notification!.uid).notif,
+        stream: DatabaseService(uid: notification!.docId).notif,
 
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -109,21 +108,23 @@ late String uid;
                       textInputDecoration.copyWith(hintText: 'Location'),
                       onChanged: (val) => setState(() => _currentLoc = val),
                     ),
-                    //dropdown
-                    // DropdownButtonFormField(
-                    //     decoration: textInputDecoration,
-                    //     //value: (_currentLoc ?? userData.loc).toString(),
-                    //     hint: const Text('Select Location'),
-                    //     items: Location.map((loc) {
-                    //       return DropdownMenuItem(
-                    //         value: loc,
-                    //         child: Text('$loc area'),
-                    //       );
-                    //     }).toList(),
-                    //     onChanged: (value) =>
-                    //         setState(() => _currentLoc = value as String?)
-                    // ),
-
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    // dropdown
+                    DropdownButtonFormField(
+                      decoration: textInputDecoration,
+                      //value: (_currentLoc ?? userData.loc).toString(),
+                      hint: const Text('Select'),
+                      items: Mode.map((thing) {
+                        return DropdownMenuItem(
+                          value: thing,
+                          child: Text('$thing'),
+                        );
+                      }).toList(),
+                      onChanged: (value) =>
+                          setState(() => _currentMode = value as String?),
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -140,11 +141,12 @@ late String uid;
                           // print(_currentLoc);
                           //print(user.uid);
                           if(_formkey.currentState!.validate()){
-                            await DatabaseService(uid: notification.uid).updateNotifi(
+                            await DatabaseService(uid: notification.docId).updateNotifi(
                                 _currentTime?? NOTI.time,
                                 _currentDate?? NOTI.date,
                                 _currentLoc?? NOTI.loc,
-                                _currentReason?? NOTI.reason);
+                                _currentReason?? NOTI.reason,
+                                _currentMode?? NOTI.mode);
                             //print(userData.username);
                             Navigator.pop(context,NOTI.date);//,name.text);
                           }

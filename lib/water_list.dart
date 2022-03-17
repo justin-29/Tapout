@@ -1,19 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:trial/models/notif.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:trial/services/database.dart';
-import 'client_tile.dart';
-import 'models/user.dart';
+
+import 'models/notif.dart';
 import 'notification_tile.dart';
 
-class NotificationList extends StatefulWidget {
-  const NotificationList({Key? key}) : super(key: key);
+class WaterList extends StatefulWidget {
+  const WaterList({Key? key}) : super(key: key);
 
   @override
-  _NotificationListState createState() => _NotificationListState();
+  _WaterListState createState() => _WaterListState();
 }
 
-class _NotificationListState extends State<NotificationList> {
+class _WaterListState extends State<WaterList> {
   @override
   Widget build(BuildContext context) {
     //   final user = Provider.of<Users?>(context);
@@ -29,10 +27,10 @@ class _NotificationListState extends State<NotificationList> {
 
 
 
-    final e = [];
+    final w = [];
     notifications.forEach((client) {
-      if (client.mode =='Electricity') {
-        e.add(client);
+      if (client.mode =='Water') {
+        w.add(client);
       }
     });
 
@@ -45,12 +43,10 @@ class _NotificationListState extends State<NotificationList> {
     // });
 
     return ListView.builder(
-      itemCount: e.length,
+      itemCount: w.length,
       itemBuilder: (BuildContext context, int index) {
-        return NotificationTile(notif: e[index]);
+        return NotificationTile(notif: w[index]);
       },
     );
   }
 }
-//         });
-//   }}

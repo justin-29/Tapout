@@ -1,13 +1,16 @@
 class Noti{
-  final String uid;
-  Noti({required this.uid});
+  final String docId;
+  Noti({required this.docId});
 }
 class noti{
-  final String uid;
+  final String docId;
   final String time;
   final String date;
   final String reason;
   final String loc;
+  final String mode;
 
-  noti({required this.uid, required this.time, required this.date, required this.reason, required this.loc});
+  noti({required this.docId, required this.time, required this.date, required this.reason, required this.loc,required this.mode});
+
+
 }

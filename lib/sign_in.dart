@@ -118,6 +118,11 @@ class _SignInScreenState extends State<SignInScreen> {
                       loading= false;
                       });
                     }
+                    else{
+                      //1. fetch query snapshot form clients
+                      //2. store in shared preferences
+
+                    }
                   }
                 },
                 child: const Text('Submit'))

@@ -21,14 +21,16 @@ class _NotificationFormState extends State<NotificationForm> {
   FirebaseFirestore.instance.collection('notifications');
   // TextEditingController name= TextEditingController();
   final _formkey = GlobalKey<FormState>();
-
-
+  final List<String> Mode = [
+    'Electricity',
+    'Water',
+  ];
 //form values
   String? _currentDate;
   String? _currentTime;
   String? _currentReason;
   String? _currentLoc;
-
+  String? _currentMode;
   @override
   Widget build(BuildContext context) {
     //final user = Provider.of<Users?>(context);
@@ -91,20 +93,23 @@ class _NotificationFormState extends State<NotificationForm> {
                       textInputDecoration.copyWith(hintText: 'Location'),
                       onChanged: (val) => setState(() => _currentLoc = val),
                     ),
-                    //dropdown
-                    // DropdownButtonFormField(
-                    //     decoration: textInputDecoration,
-                    //     //value: (_currentLoc ?? userData.loc).toString(),
-                    //     hint: const Text('Select Location'),
-                    //     items: Location.map((loc) {
-                    //       return DropdownMenuItem(
-                    //         value: loc,
-                    //         child: Text('$loc area'),
-                    //       );
-                    //     }).toList(),
-                    //     onChanged: (value) =>
-                    //         setState(() => _currentLoc = value as String?)
-                    // ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    // dropdown
+                    DropdownButtonFormField(
+                        decoration: textInputDecoration,
+                        //value: (_currentLoc ?? userData.loc).toString(),
+                        hint: const Text('Select'),
+                        items: Mode.map((thing) {
+                          return DropdownMenuItem(
+                            value: thing,
+                            child: Text('$thing'),
+                          );
+                        }).toList(),
+                        onChanged: (value) =>
+                            setState(() => _currentMode = value as String?),
+                    ),
 
                     const SizedBox(
                       height: 20,
@@ -132,7 +137,7 @@ class _NotificationFormState extends State<NotificationForm> {
                                 content: NotificationContent(
                                     id: 10,
                                     channelKey: 'basic_channel',
-                                    title: 'Outage Notification',
+                                    title: '$_currentMode Notification',
                                     body: _currentReason));
                             Navigator.pop(context);//,name.text);
                           }

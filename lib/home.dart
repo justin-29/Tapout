@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Text(
                               //name,
-                              'User',
+                        '  User',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),

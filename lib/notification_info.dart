@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trial/models/notif.dart';
 import 'package:trial/services/database.dart';
+import 'package:trial/water_info.dart';
+import 'package:trial/water_list.dart';
 
+import 'dashboard.dart';
 import 'notification_form.dart';
 import 'notification_list.dart';
 class NotificationInfoScreen extends StatefulWidget {
@@ -35,7 +38,12 @@ class _NotificationInfoScreenState extends State<NotificationInfoScreen> {
         title: const Text('Notification Info'),
     centerTitle: true,
     actions: [
-    IconButton(onPressed: ()=>_showSettingsPanel(), icon: const Icon(Icons.edit))
+    IconButton(onPressed: ()=>_showSettingsPanel(), icon: const Icon(Icons.edit)),IconButton(onPressed: (){
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>  WaterInfoScreen()));
+      }, icon: const Icon(Icons.water))
     ],
     ),
     body:

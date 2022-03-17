@@ -7,8 +7,8 @@ import 'package:trial/models/complaint.dart';
 
 class DatabaseService {
   final String uid;
-
-  DatabaseService({required this.uid});
+  late String docId;
+  DatabaseService({required this. uid});
 
   DatabaseService.withoutUID() :uid="";
 
@@ -21,6 +21,8 @@ class DatabaseService {
 
   final CollectionReference comp = FirebaseFirestore.instance.collection(
       'Complaints');
+
+
 
 
   // CLIENT LIST
@@ -76,21 +78,23 @@ class DatabaseService {
 
   noti _notiFromSnapshot(DocumentSnapshot snapshot) {
     return noti(
-      uid: uid,
+      docId:  snapshot['docId'],
       time: snapshot['time'],
       date: snapshot['date'],
       reason: snapshot['reason'],
       loc: snapshot['loc'],
+      mode: snapshot['mode']
     );
   }
 
   Future updateNotifi(String time, String date, String reason,
-      String loc) async {
+      String loc,String mode) async {
     return await notifi.doc(uid).set({
       'time': time,
       'date': date,
       'loc': loc,
       'reason': reason,
+      'mode': mode,
     });
   }
 
@@ -101,7 +105,8 @@ class DatabaseService {
           time: doc['time'] ?? '',
           loc: doc['loc'] ?? '',
           date: doc['date'] ?? '',
-          reason: doc['reason'] ?? ''
+          reason: doc['reason'] ?? '',
+          mode: doc['mode']?? '',
       );
     }).toList();
   }
@@ -112,7 +117,7 @@ class DatabaseService {
   }
 
 Stream<noti> get notif {
-  return notifi.doc(uid).snapshots()
+  return notifi.doc(docId).snapshots()
       .map(_notiFromSnapshot);
 }
 
