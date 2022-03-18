@@ -132,14 +132,15 @@ class _NotificationFormState extends State<NotificationForm> {
                       'date': _currentDate,
                       'time': _currentTime,
                       'loc': _currentLoc,
-                      'reason': _currentReason
+                      'reason': _currentReason,
+                      'mode': _currentMode
                     }).then((value) => print('Notification registered'));
-                    AwesomeNotifications().createNotification(
-                        content: NotificationContent(
-                            id: 10,
-                            channelKey: 'basic_channel',
-                            title: '$_currentMode Notification',
-                            body: _currentReason));
+                    // AwesomeNotifications().createNotification(
+                    //     content: NotificationContent(
+                    //         id: 10,
+                    //         channelKey: 'basic_channel',
+                    //         title: '$_currentMode Notification',
+                    //         body: _currentReason));
                     Navigator.pop(context); //,name.text);
                   }
                 }),
