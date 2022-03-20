@@ -133,7 +133,8 @@ class _NotificationFormState extends State<NotificationForm> {
                       'time': _currentTime,
                       'loc': _currentLoc,
                       'reason': _currentReason,
-                      'mode': _currentMode
+                      'mode': _currentMode,
+                      'created':FieldValue.serverTimestamp()
                     }).then((value) => print('Notification registered'));
                     // AwesomeNotifications().createNotification(
                     //     content: NotificationContent(

@@ -112,7 +112,7 @@ class DatabaseService {
   }
 
   Stream<List<Notif>>? get notifications {
-    return notifi.snapshots()
+    return notifi.orderBy("created",descending: true).snapshots()
         .map(_notificaitonListFromSnapshot);
   }
 
@@ -136,7 +136,7 @@ Stream<noti> get notif {
       }).toList();
     }
     Stream<List<Complaint>>? get complaints{
-      return comp.snapshots()
+      return comp.orderBy("created",descending: true).snapshots()
           .map(_complaintsListFromSnapshot);
     }
   }

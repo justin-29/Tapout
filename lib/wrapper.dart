@@ -7,7 +7,7 @@ import 'package:trial/select.dart';
 import 'admin_home.dart';
 import 'models/user.dart';
 
-final AdminList =['8L8iPtkwvUhXwY4GCBCZDUULQVD3'];
+final AdminList =['8L8iPtkwvUhXwY4GCBCZDUULQVD3','uGRECqlPKqfYWGpk8MPLXhtfAEI2'];
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
 

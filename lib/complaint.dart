@@ -156,7 +156,8 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         'name': nam,
                         'phone': phon,
                         'email': email,
-                        'complaint': comp
+                        'complaint': comp,
+                        'created': FieldValue.serverTimestamp()
                       }).then((value) => print('complaint registered'));
                       Navigator.pop(context);
 

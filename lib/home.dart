@@ -6,6 +6,7 @@ import 'package:trial/location.dart';
 import 'package:trial/services/auth.dart';
 import 'package:trial/client_info.dart';
 import 'package:trial/edit_form.dart';
+import 'package:trial/user_notification_info.dart';
 
 import 'dashboard.dart';
 import 'emergency.dart';
@@ -203,12 +204,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         InkWell(
                           onTap: () {
                             print("here");
-                            AwesomeNotifications().createNotification(
-                                content: NotificationContent(
-                                    id: 10,
-                                    channelKey: 'basic_channel',
-                                    title: 'UnSimple Notification',
-                                    body: 'UnSimple body'));
+                            // AwesomeNotifications().createNotification(
+                            //     content: NotificationContent(
+                            //         id: 10,
+                            //         channelKey: 'basic_channel',
+                            //         title: 'UnSimple Notification',
+                            //         body: 'UnSimple body'));
 
                             Navigator.push(
                                 context,
@@ -261,7 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => NotificationInfoScreen()));
+                                    builder: (context) => UserNotificationInfoScreen()));
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(
