@@ -26,18 +26,12 @@ class _NotificationListState extends State<NotificationList> {
 
     final notifications = Provider.of<List<Notif>?>(context) ?? [];
 
-
-
-
     final e = [];
     notifications.forEach((client) {
       if (client.mode =='Electricity') {
         e.add(client);
       }
     });
-
-
-
     //   print(client.username);
     //   print(client.phone);
     //   print(client.loc);

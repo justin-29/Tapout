@@ -22,9 +22,7 @@ class DatabaseService {
   final CollectionReference comp = FirebaseFirestore.instance.collection(
       'Complaints');
 
-
-
-
+  
   // CLIENT LIST
 
   Future updateUserData(String username, String phone, String loc,

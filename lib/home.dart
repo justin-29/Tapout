@@ -150,33 +150,33 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                          const ComplaintScreen())
-                  );
-                },
-                child:
-                Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          elevation: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Ink.image(
-                                image: const AssetImage(
-                                    'assets/images/feedback.png'),
-                                height: 100,
-                              ),
-                              const Text('Feedback')
-                            ],
-                          ),
-                        ),
-              ),
+              // InkWell(
+              //   onTap: () {
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) =>
+              //             const ComplaintScreen())
+              //     );
+              //   },
+              //   child:
+              //   Card(
+              //             shape: RoundedRectangleBorder(
+              //                 borderRadius: BorderRadius.circular(8)),
+              //             elevation: 4,
+              //             child: Column(
+              //               mainAxisAlignment: MainAxisAlignment.center,
+              //               children: [
+              //                 Ink.image(
+              //                   image: const AssetImage(
+              //                       'assets/images/feedback.png'),
+              //                   height: 100,
+              //                 ),
+              //                 const Text('Feedback')
+              //               ],
+              //             ),
+              //           ),
+              // ),
                         InkWell(
                           onTap: () {
                             Navigator.push(

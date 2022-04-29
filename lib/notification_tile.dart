@@ -8,7 +8,6 @@ import 'models/noti.dart';
 
 class NotificationTile extends StatelessWidget {
   //const ClientTile({Key? key}) : super(key: key);
-
   final Notif notif;
   NotificationTile({required this.notif});
 

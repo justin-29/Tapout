@@ -130,20 +130,20 @@ class _AdminHomeState extends State<AdminHome> {
                           ),
                         ),
               ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)
-                          ),
-                          elevation: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-
-                              Ink.image(image: const  AssetImage('assets/images/feedback.png'), height: 100,),
-                              const Text('Feedback')
-                            ],
-                          ),
-                        ),
+                        // Card(
+                        //   shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(8)
+                        //   ),
+                        //   elevation: 4,
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //
+                        //       Ink.image(image: const  AssetImage('assets/images/feedback.png'), height: 100,),
+                        //       const Text('Feedback')
+                        //     ],
+                        //   ),
+                        // ),
                         // Card(
                         //   shape: RoundedRectangleBorder(
                         //       borderRadius: BorderRadius.circular(8)
